@@ -1,26 +1,30 @@
 *{
     box-sizing: border-box;
 }
+body{
+    margin: 10% 30% 50% 30%;
+}
 button{
     width:25%;
 height:50px;
-    border:2px solid black;
-    border-radius: 5px;
+    border:1px solid black;
+   
     font-size: 30px;
+    font-weight:lighter;
     transition: 5ms;
 
 }
 .clear{
     width: 45%;
-    font-size: 45px;
-background-color:orange
+    font-size: 30px;
+
 }
 .operations{
-    background-color: orange;
+    background-color: rgb(248, 152, 43)
 }
 .backspace{
     width:30%;
-    font-size:45px;
+    font-size:30px;
   
 }
 
@@ -31,7 +35,7 @@ background-color:orange
     color:white;
     text-align:end;
 background-color:rgb(10, 9, 10);
-font-size: x-large;   
+font-size: 2.5rem;   
 }
 .buttons{
     display:flex;
@@ -44,8 +48,7 @@ font-size: x-large;
     width: 75%;
 }
 button:hover{
-    border-width: 0cm;
-    border:radius=0;
+    border-width: 3px;
     filter:brightness(120%);
 }
 button:active{

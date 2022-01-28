@@ -8,7 +8,44 @@ const backspace=document.querySelector('.backspace')
 const divide=document.querySelector('.divide')
 var result=document.querySelector('.screen')
 var prevValue=0;
-var prevOp;
+var prevOp=null;
+function calcul(el1,el2,op)
+{ switch(op)
+    {case'+':
+       return parseInt(el1)+parseInt(el2);
+    break;
+case'-':
+return el1-el2;
+break;
+case'*':
+return el1*el2;
+break;
+case'/':
+return el1/el2;
+break;
+}
+}
+function operator(operator){
+    if(prevOp!=null)
+     {prevValue=calcul(prevValue,result.innerText,prevOp)}
+    else {prevValue=parseInt(result.innerText)}
+    switch(operator)
+    {  case '+':
+    prevOp='+';
+    break;
+    case '-':
+        prevOp='-';
+        break;
+        case'*':
+        prevOp='*';
+        break;
+        case'/':
+        prevOp='/';
+        break;
+    
+    }
+    result.innerText=""
+}
 for(let i=0;i<content.length;i++)
 content[i].addEventListener('click',function()
 {  if(result.innerText==="0") {result.innerText=""}
@@ -19,70 +56,32 @@ content[i].addEventListener('click',function()
     break;
       case clear:
     result.innerText="";
+    prevValue=0;
+    prevOp=null;
     break;
      case add:
-         if(result.innerText)
-        prevValue=parseInt(result.innerText);
-        else prevValue=0;
-         result.innerText="";
-         prevOp="+";
+       operator('+');
          break;
          case sub:
-            if(result.innerText)
-            prevValue=parseInt(result.innerText);
-            else prevValue=0;
-            result.innerText="";
-            prevOp="-"
+           operator('-');
             break;
             case mul:
-                if(result.innerText)
-                prevValue=parseInt(result.innerText);
-                else prevValue=0;
-                result.innerText=""
-                prevOp="*"
+          operator('*')
                 break;
                 case divide:
-                    if(result.innerText)
-                    prevValue=parseInt(result.innerText);
-                    else prevValue=0;
-                    result.innerText=""
-                    prevOp="/"
+                 operator('/');
                     break;
                     case equal:
-                        switch(prevOp)
-                        {case "+":
-                       if(result.innerText)
-                    result.innerText=(parseInt(result.innerText) + prevValue).toString();
-                    else result.innerText=prevValue.toString();
-                    prevOp="";
-                    break;
-                case "-":
-                    result.innerText=(prevValue-parseInt(result.innerText)).toString();
-                    prevOp="";
-                    break;
-                case "*":
-                    if(result.innerText)
-                    result.innerText=(parseInt(result.innerText) * prevValue).toString();
-                    else result.innerText=prevValue.toString();
-                    prevOp="";
-                    break;
-                case "/":
-                    if(result.innerText==0)
-                    {result.innerText="Error";
-                setTimeout(function op(){result.innerText=""},1000)}
-            else
-            result.innerText=(prevValue/result.innerText).toString();
-            prevOp="";
-        break;
-    default:
-        prevValue=0;}
-        break;
+                        if(prevOp!=null)
+                        {result.innerText= calcul(prevValue,result.innerText,prevOp)
+                  prevValue=result.innerText
+               prevOp=null;}
+                break;
        default:
-           result.innerText+=content[i].innerText;     
- } 
+           {result.innerText+=content[i].innerText; }
     
 }
-
-
-
+}
 )
+
+
